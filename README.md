@@ -1,8 +1,3 @@
-Got it 👍 You want me to convert your **project documentation (README)** into a **design representation** so it looks structured like a proper **system design / architecture** rather than just plain text.
-
-Here’s a **design-oriented version** of your project:
-
----
 
 # 🌱 Smart Crop Advisor – System Design
 
@@ -138,6 +133,4 @@ User → Web Dashboard → Google OAuth → Product Catalog (MongoDB)
 * 📦 Real-time **inventory + payment gateway** integration.
 * 📊 Analytics dashboard with charts for farmers & admins.
 
----
 
-👉 Do you want me to also **draw proper UML diagrams** (like Use Case, ER diagram, Sequence Diagram) for this design? That would make it **submission-ready for SIH/project reports**.
