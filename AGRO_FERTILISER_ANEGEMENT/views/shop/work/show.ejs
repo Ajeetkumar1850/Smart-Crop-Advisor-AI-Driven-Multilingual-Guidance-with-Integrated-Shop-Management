@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Worker Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; background-color: #f8f9fa; }
+        .details-container { max-width: 600px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        h1 { margin-bottom: 25px; color: #343a40; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .detail-item { margin-bottom: 15px; }
+        .action-buttons { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="details-container">
+            <h1 class="text-center"><%= worker.name %></h1>
+            
+            <div class="worker-details">
+                <div class="detail-item">
+                    <h5 class="text-muted">Position/Role</h5>
+                    <p class="fs-5"><%= worker.role %></p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 detail-item">
+                        <h5 class="text-muted">Age</h5>
+                        <p class="fs-5"><%= worker.age %></p>
+                    </div>
+                    <div class="col-md-6 detail-item">
+                        <h5 class="text-muted">Salary</h5>
+                        <p class="fs-5">$<%= worker.salary %></p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <h5 class="text-muted">Contact</h5>
+                    <p class="fs-5"><%= worker.contact %></p>
+                </div>
+            </div>
+
+            <div class="action-buttons d-flex justify-content-between">
+                <a href="/worker" class="btn btn-secondary">Back to all workers</a>
+                <div>
+                    <a href="/worker/<%= worker._id %>/edit" class="btn btn-primary me-2">Edit</a>
+                    <form action="/worker/<%= worker._id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

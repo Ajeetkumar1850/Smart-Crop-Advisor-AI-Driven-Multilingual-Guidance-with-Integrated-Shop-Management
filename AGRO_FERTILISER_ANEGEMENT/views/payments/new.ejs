@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Payment</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h4 class="mb-0">💳 New Payment Entry</h4>
+          </div>
+          <div class="card-body">
+            <form action="/payments" method="POST">
+
+              <!-- Customer -->
+              <div class="mb-3">
+                <label for="customer" class="form-label">Select Customer:</label>
+                <select name="customer" id="customer" class="form-select" required>
+                  <% customers.forEach(c => { %>
+                    <option value="<%= c._id %>"><%= c.name %></option>
+                  <% }) %>
+                </select>
+              </div>
+
+              <!-- Product -->
+              <div class="mb-3">
+                <label for="productDropdown" class="form-label">Select Product:</label>
+                <select name="product" id="productDropdown" class="form-select" required>
+                  <% products.forEach(p => { %>
+                    <option value="<%= p._id %>" data-price="<%= p.price %>">
+                      <%= p.name %> (₹<%= p.price %>)
+                    </option>
+                  <% }) %>
+                </select>
+              </div>
+
+              <!-- Quantity -->
+              <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity:</label>
+                <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
+              </div>
+
+              <!-- Total (auto-calculated) -->
+              <div class="mb-3">
+                <label for="totalAmount" class="form-label">Total Amount (₹):</label>
+                <input type="number" name="totalAmount" id="totalAmount" class="form-control" readonly>
+              </div>
+
+              <!-- Amount Paid -->
+              <div class="mb-3">
+                <label for="amountPaid" class="form-label">Amount Paid (₹):</label>
+                <input type="number" name="amountPaid" id="amountPaid" class="form-control" min="0" required>
+              </div>
+
+              <div class="text-end">
+                <button type="submit" class="btn btn-success">💾 Submit Payment</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script for Auto-Calculating Total -->
+  <script>
+    const productDropdown = document.getElementById('productDropdown');
+    const quantityInput = document.getElementById('quantity');
+    const totalAmount = document.getElementById('totalAmount');
+
+    function updateTotal() {
+      const selected = productDropdown.selectedOptions[0];
+      const price = parseFloat(selected.dataset.price);
+      const qty = parseInt(quantityInput.value) || 0;
+      totalAmount.value = price * qty;
+    }
+
+    productDropdown.addEventListener('change', updateTotal);
+    quantityInput.addEventListener('input', updateTotal);
+    window.addEventListener('load', updateTotal);
+  </script>
+
+</body>
+</html>
