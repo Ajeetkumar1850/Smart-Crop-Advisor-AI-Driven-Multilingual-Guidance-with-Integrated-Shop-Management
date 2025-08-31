@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AGRO</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fbe7;
+      padding: 40px;
+      color: #333;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      color: #558b2f;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 4px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #558b2f;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #33691e;
+    }
+
+    a {
+      margin-left: 15px;
+      color: #33691e;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <form Method="POST" action="/cust/<%=customer._id %>?_method=PUT">
+    <h3>Edit Customer</h3>
+    
+    <label for="name">Name:</label>
+    <input type="text" value="<%=customer.name %>" name="customer[name]" required>
+
+    <label for="name">Address:</label>
+    <input type="text" value="<%=customer.address %>" name="customer[address]" required>
+
+    <label for="phone">Phone:</label>
+    <input type="text" value="<%=customer.phone %>" name="customer[phone]" required>
+
+    <label for="email">Email:</label>
+    <input type="email" value="<%=customer.email %>" name="customer[email]" required>
+
+    <button type="submit">Edit Customer</button>
+    <a href="/customer/<%=customer._id %>">Cancel</a>
+  </form>
+</body>
+</html>

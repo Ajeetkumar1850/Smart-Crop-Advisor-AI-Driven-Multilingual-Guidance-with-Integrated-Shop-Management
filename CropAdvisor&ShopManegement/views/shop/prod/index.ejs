@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGRO Products</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #93f11e;
+            color: #333;
+        }
+        h3 {
+            color: #2d7a4c;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #a5d6a7;
+            padding-bottom: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+        li {
+            background: white;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        a {
+            text-decoration: none;
+            color: #2d7a4c;
+            font-weight: 500;
+            display: block;
+        }
+        a:hover {
+            color: #1e5631;
+        }
+        button {
+            background-color: #2d7a4c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #1e5631;
+            transform: translateY(-2px);
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h3>All Products</h3>
+    
+    <div class="button-group">
+         
+        <button onclick="window.location.href='/dash'">⬅️ Back to Dashboard</button>
+
+        <form method="GET" action="/prod/new">
+            <button type="submit">➕ Add New Product</button>
+        </form>
+<form method="GET" action="/prod" style="margin-bottom: 20px;">
+  <input 
+    type="text" 
+    name="search" 
+    placeholder="Search product..." 
+    value="<%= typeof search !== 'undefined' ? search : '' %>" 
+    style="padding: 8px; margin-left: 6px; width: 60%; border: 1px solid #ccc; border-radius: 4px;">
+  <button type="submit" style="padding: 8px 12px; background-color: #2d7a4c; color: white; border: none; border-radius: 4px;">Search</button>
+</form>
+
+    </div>
+    
+    <ul>
+        <% if (allproducts.length === 0) { %>
+            <li>No products found. Click "Add New Product" to create one.</li>
+        <% } else { %>
+            <% for (let product of allproducts) { %>
+                <li>
+                    <a href="/prod/<%= product._id %>"> 
+                        <%= product.name %> 
+                        <span style="float:right; color:#666; font-size:0.9rem;">→</span>
+                    </a>
+                </li>
+            <% } %>
+        <% } %>
+    </ul>
+
+
+
+    <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const msg = urlParams.get("msg");
+
+  if (msg === "product") {
+    const speech = new SpeechSynthesisUtterance("Naya product joda gaya hai");
+    speech.lang = "en-IN";
+    speech.rate = 1;
+    window.speechSynthesis.speak(speech);
+  }
+</script>
+
+</body>
+</html>
